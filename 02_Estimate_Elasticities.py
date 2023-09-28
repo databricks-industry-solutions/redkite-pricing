@@ -238,6 +238,11 @@ display(sales_features)
 # COMMAND ----------
 
 # DBTITLE 1,Shared Model Configurations
+# set experiment path
+user_name = dbutils.notebook.entry_point.getDbutils().notebook().getContext().userName().get()
+mlflow.set_experiment(f"/Users/{user_name}/redkite-pricing")
+
+# define feature columns
 disc_feature_cols = ['productKey'] #,'geographyKey']
 
 cont_feature_cols = [
@@ -253,6 +258,7 @@ cont_feature_cols = [
         
 label_col = 'volumePercentChange'
 
+# set training fraction
 train_fraction = 0.7
 
 # COMMAND ----------
