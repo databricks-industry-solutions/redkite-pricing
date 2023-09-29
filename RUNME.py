@@ -68,12 +68,24 @@ job_json = {
             "group": "SOLACC"
         },
         "tasks": [
+           {
+                "job_cluster_key": "redkite-pricinganalytics",
+                "notebook_task": {
+                    "notebook_path": f"00_Intro_&_Config"
+                },
+                "task_key": "00"
+            },
             {
                 "job_cluster_key": "redkite-pricinganalytics",
                 "notebook_task": {
                     "notebook_path": f"01_Data_Prep_Analysis"
                 },
-                "task_key": "01"
+                "task_key": "01",
+                 "depends_on": [
+                     {
+                         "task_key": "00"
+                     }
+                 ]
             },
             {
                 "job_cluster_key": "redkite-pricinganalytics",
